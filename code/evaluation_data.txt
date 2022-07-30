@@ -1,0 +1,1008 @@
+if (count + p > total_size)
+ 		count = total_size - p;
+ 
+	buffer = kmalloc((count > PAGE_SIZE) ? PAGE_SIZE : count, GFP_KERNEL);
+
+ 	if (!buffer)
+ 		return -ENOMEM;
+ 
+
+ 	while (count) {
+ 		c = (count > PAGE_SIZE) ? PAGE_SIZE : count;
+ 		dst = buffer;
+		for (i = c >> 2; i--;) {
+			*dst = fb_readl(src++);
+			*dst = big_swap(*dst);
+			dst++;
+		}
+		if (c & 3) {
+			u8 *dst8 = (u8 *)dst;
+			u8 __iomem *src8 = (u8 __iomem *)src;
+
+
+ 
+			for (i = c & 3; i--;) {
+				if (i & 1) {
+					*dst8++ = fb_readb(++src8);
+				} else {
+					*dst8++ = fb_readb(--src8);
+					src8 += 2;
+				}
+			}
+			src = (u32 __iomem *)src8;
+
+ }
+
+@CWE-787:https://nvd.nist.gov/vuln/detail/CVE-2022-2380
+
+#########################################
+
+
+	while (read_pos < length) {
+	
+		if (write_pos + 4 >= sizeof(c->operand) - 4) {
+			ret = -EINVAL;
+			goto out;
+		}
+ 		c->operand[write_pos++] = msg[read_pos++];
+ 		c->operand[write_pos++] = msg[read_pos++];
+ 	        c->operand[write_pos++] = msg[read_pos++];
+
+
+ 		c->operand[write_pos++] = es_info_length >> 8;
+ 		c->operand[write_pos++] = es_info_length & 0xff;
+ 		if (es_info_length > 0) {
+			if (read_pos >= length) {
+				ret = -EINVAL;
+				goto out;
+			}
+ 			pmt_cmd_id = msg[read_pos++];
+ 			if (pmt_cmd_id != 1 && pmt_cmd_id != 4)
+ 				dev_err(fdtv->device, "invalid pmt_cmd_id %d at stream level\n",
+ 					pmt_cmd_id);
+ 
+			if (es_info_length > sizeof(c->operand) - 4 -
+					     write_pos) {
+
+ 				ret = -EINVAL;
+ 				goto out;
+ 			}
+
+@CWE-787:https://nvd.nist.gov/vuln/detail/CVE-2021-42739
+
+#########################################
+
+buf = sp->raw_buf;
+sp->cooked_buf[sp->rx_count_cooked++] =
+	buf[0] | ((buf[1] << 2) & 0xc0);
+
+
+@CWE-787:https://nvd.nist.gov/vuln/detail/CVE-2021-42008
+
+#########################################
+
+
+ 	
+keys = kvmalloc(key_size * bucket_size, GFP_USER | __GFP_NOWARN);
+values = kvmalloc(value_size * bucket_size, GFP_USER | __GFP_NOWARN);
+
+if (!keys || !values) {
+	ret = -ENOMEM;
+	goto after_loop;
+
+
+@CWE-787:https://nvd.nist.gov/vuln/detail/CVE-2021-38166
+
+#########################################
+
+https://nvd.nist.gov/vuln/detail/CVE-2021-38166
+
+
+
+	spin_lock(&rx->lock);
+	if (unlikely(rx->skey || (key_gen == rx->key_gen && rx->key.keys))) {
+		pr_err("%s: key existed <%p>, gen %d vs %d\n", rx->name,
+		       rx->skey, key_gen, rx->key_gen);
+		goto exit;
+	}
+
+	/* Allocate memory for the key */
+	skey = kmalloc(size, GFP_ATOMIC);
+	if (unlikely(!skey)) {
+		pr_err("%s: unable to allocate memory for skey\n", rx->name);
+		goto exit;
+	}
+
+	/* Copy key from msg data */
+	skey->keylen = ntohl(*((__be32 *)(data + TIPC_AEAD_ALG_NAME)));
+	memcpy(skey->alg_name, data, TIPC_AEAD_ALG_NAME);
+	memcpy(skey->key, data + TIPC_AEAD_ALG_NAME + sizeof(__be32),
+	       skey->keylen);
+
+	/* Sanity check */
+	if (unlikely(size != tipc_aead_key_size(skey))) {
+		kfree(skey);
+		skey = NULL;
+		goto exit;
+	}
+
+	rx->key_gen = key_gen;
+	rx->skey_mode = msg_key_mode(hdr);
+	rx->skey = skey;
+	rx->nokey = 0;
+	mb(); /* for nokey flag */
+
+exit:
+
+@CWE-20:https://nvd.nist.gov/vuln/detail/CVE-2021-43267
+
+#########################################
+
+
+func Render(tmpl string, s *types.Step) (types.StepSlice, error) {
+	buffer := new(bytes.Buffer)
+	config := new(types.Build)
+	velaFuncs := funcHandler{envs: convertPlatformVars(s.Environment)}
+	templateFuncMap := map[string]interface{}{
+		"vela": velaFuncs.returnPlatformVar,
+	}
+
+	// parse the template with Masterminds/sprig functions
+	//
+	// https://pkg.go.dev/github.com/Masterminds/sprig?tab=doc#TxtFuncMap
+	t, err := template.New(s.Name).Funcs(sprig.TxtFuncMap()).Funcs(templateFuncMap).Parse(tmpl)
+	if err != nil {
+		return types.StepSlice{}, fmt.Errorf("unable to parse template %s: %v", s.Template.Name, err)
+	}
+}
+
+@CWE-78:https://nvd.nist.gov/vuln/detail/CVE-2020-26294
+
+#########################################
+
+
+if form.getvalue('backend_ip') is not None:
+    backend_backend = form.getvalue('backend_backend')
+    backend_server = form.getvalue('backend_server')
+    backend_ip = form.getvalue('backend_ip')
+    backend_port = form.getvalue('backend_port')
+    if any((funct.checkAjaxInput(backend_backend), funct.checkAjaxInput(backend_server), funct.checkAjaxInput(backend_ip), funct.checkAjaxInput(backend_port))):
+        print('error: Nice try')
+        sys.exit()
+    if form.getvalue('backend_ip') is None:
+        print('error: Backend IP must be IP and not 0')
+        sys.exit()
+
+@CWE-78:https://nvd.nist.gov/vuln/detail/CVE-2022-31137
+
+#########################################
+
+
+func isRepositoryGitPath(path string) bool {
+	return strings.HasSuffix(path, ".git") ||
+		strings.Contains(path, ".git"+string(os.PathSeparator)) ||
+		// Windows treats ".git." the same as ".git"
+		strings.HasSuffix(path, ".git.") ||
+		strings.Contains(path, ".git."+string(os.PathSeparator))
+}
+
+
+@CWE-78:https://nvd.nist.gov/vuln/detail/CVE-2022-1986
+
+#########################################
+
+
+
+case SO_PEERGROUPS:
+ 	{
+
+ 		int ret, n;
+ 
+		if (!sk->sk_peer_cred)
+
+
+ 		return -ENODATA;
+ 
+		n = sk->sk_peer_cred->group_info->ngroups;
+
+ 		if (len < n * sizeof(gid_t)) {
+ 			len = n * sizeof(gid_t);
+
+ 			return put_user(len, optlen) ? -EFAULT : -ERANGE;
+ 		}
+ 		len = n * sizeof(gid_t);
+ 
+		ret = groups_to_user((gid_t __user *)optval,
+				     sk->sk_peer_cred->group_info);
+ 		if (ret)
+ 			return ret;
+ 		goto lenout;
+
+
+@CWE-416:https://nvd.nist.gov/vuln/detail/CVE-2021-4203
+
+#########################################
+
+
+device_lock(&dev->dev);
+ 
+	if (dev->rfkill && rfkill_blocked(dev->rfkill)) {
+		rc = -ERFKILL;
+
+ 
+	if (!device_is_registered(&dev->dev)) {
+		rc = -ENODEV;
+
+
+
+@CWE-416:https://nvd.nist.gov/vuln/detail/CVE-2021-4202
+
+#########################################
+
+int udf_expand_file_adinicb(struct inode *inode)
+ 	char *kaddr;
+ 	struct udf_inode_info *iinfo = UDF_I(inode);
+ 	int err;
+	struct writeback_control udf_wbc = {
+		.sync_mode = WB_SYNC_NONE,
+		.nr_to_write = 1,
+	};
+ 
+ 	WARN_ON_ONCE(!inode_is_locked(inode));
+ 	if (!iinfo->i_lenAlloc) {
+
+ 		iinfo->i_alloc_type = ICBTAG_FLAG_AD_LONG;
+ 	/* from now on we have normal address_space methods */
+ 	inode->i_data.a_ops = &udf_aops;
+
+ 	up_write(&iinfo->i_data_sem);
+	err = inode->i_data.a_ops->writepage(page, &udf_wbc);
+
+ 	if (err) {
+ 		/* Restore everything back so that we don't lose data... */
+ 		lock_page(page);
+
+
+
+@CWE-476:https://nvd.nist.gov/vuln/detail/CVE-2022-0617
+
+#########################################
+
+
+for (off = 0; off < usable_blks_in_seg; off++, entry++) {
+		struct page *data_page;
+		struct inode *inode;
+		struct node_info dni; /* dnode info for the data */
+		unsigned int ofs_in_node, nofs;
+		block_t start_bidx;
+		nid_t nid = le32_to_cpu(entry->nid);
+
+		
+		
+		ofs_in_node = le16_to_cpu(entry->ofs_in_node);
+
+		if (phase == 3) {
+			inode = f2fs_iget(sb, dni.ino);
+			if (IS_ERR(inode) || is_bad_inode(inode))
+				continue;
+
+			if (!down_write_trylock(
+				&F2FS_I(inode)->i_gc_rwsem[WRITE])) {
+				iput(inode);
+				sbi->skipped_gc_rwsem++;
+				continue;
+			}
+
+			start_bidx = f2fs_start_bidx_of_node(nofs, inode) +
+								ofs_in_node;
+}
+
+
+@CWE-476:https://nvd.nist.gov/vuln/detail/CVE-2021-44879
+
+#########################################
+
+
+static int io_send_recvmsg(struct io_kiocb *req, const struct io_uring_sqe *sqe,
+			   bool force_nonblock,
+		   long (*fn)(struct socket *, struct user_msghdr __user *,
+				unsigned int))
+{
+	struct socket *sock;
+	int ret;
+
+	if (unlikely(req->ctx->flags & IORING_SETUP_IOPOLL))
+		return -EINVAL;
+
+	sock = sock_from_file(req->file, &ret);
+	if (sock) {
+		struct user_msghdr __user *msg;
+		unsigned flags;
+
+		flags = READ_ONCE(sqe->msg_flags);
+		if (flags & MSG_DONTWAIT)
+			req->flags |= REQ_F_NOWAIT;
+		else if (force_nonblock)
+			flags |= MSG_DONTWAIT;
+
+#ifdef CONFIG_COMPAT
+		if (req->ctx->compat)
+			flags |= MSG_CMSG_COMPAT;
+#endif
+
+		msg = (struct user_msghdr __user *) (unsigned long)
+			READ_ONCE(sqe->addr);
+
+		ret = fn(sock, msg, flags);
+		if (force_nonblock && ret == -EAGAIN)
+			return ret;
+		if (ret == -ERESTARTSYS)
+			ret = -EINTR;
+	}
+
+	if (req->fs) {
+		struct fs_struct *fs = req->fs;
+
+		spin_lock(&req->fs->lock);
+		if (--fs->users)
+			fs = NULL;
+		spin_unlock(&req->fs->lock);
+		if (fs)
+			free_fs_struct(fs);
+	}
+	io_cqring_add_event(req->ctx, sqe->user_data, ret);
+	io_put_req(req);
+	return 0;
+}
+
+@CWE-190:https://nvd.nist.gov/vuln/detail/CVE-2022-1116
+
+#########################################
+
+
+static void get_sem_elements(struct sem_data *p)
+{
+	size_t i;
+
+	if (!p || !p->sem_nsems || p->sem_perm.id < 0)
+		return;
+
+	p->elements = xcalloc(p->sem_nsems, sizeof(struct sem_elem));
+}
+
+@CWE-190:https://nvd.nist.gov/vuln/detail/CVE-2021-37600
+
+#########################################
+
+
+static void copyin_link(struct new_cpio_header *file_hdr, int in_file_des)
+{
+	char *link_name = NULL;	/* Name of hard and symbolic links.  */
+	int res;		/* Result of various function calls.  */
+
+	link_name = (char *)xmalloc((unsigned int)file_hdr->c_filesize + 1);
+	link_name[file_hdr->c_filesize] = '\0';
+	tape_buffered_read(link_name, in_file_des, file_hdr->c_filesize);
+	tape_skip_padding(in_file_des, file_hdr->c_filesize);
+
+	res = symlink(link_name, file_hdr->c_name);
+	if (res < 0) {
+		fprintf(stderr, "%s: symlink %s: %s\n",
+			progname, file_hdr->c_name, strerror(errno));
+		free(link_name);
+		return;
+	}
+	if ((lchown(file_hdr->c_name, file_hdr->c_uid, file_hdr->c_gid) < 0)
+	    && errno != EPERM) {
+		fprintf(stderr, "%s: lchown %s: %s\n",
+			progname, file_hdr->c_name, strerror(errno));
+	}
+	free(link_name);
+}
+
+
+@CWE-190:https://nvd.nist.gov/vuln/detail/CVE-2021-31871
+
+#########################################
+
+
+
+void *calloc(size_t nmemb, size_t size)
+{
+	return zalloc(nmemb * size);
+}
+
+@CWE-190:https://nvd.nist.gov/vuln/detail/CVE-2021-31870
+
+#########################################
+
+
+static int snd_pcm_hw_params(struct snd_pcm_substream *substream,
+ 	if (usecs >= 0)
+ 		cpu_latency_qos_add_request(&substream->latency_pm_qos_req,
+ 					    usecs);
+-	return 0;
++	err = 0;
+  _error:
+-	/* hardware might be unusable from this time,
+-	   so we force application to retry to set
+-	   the correct hardware parameter settings */
+-	snd_pcm_set_state(substream, SNDRV_PCM_STATE_OPEN);
+-	if (substream->ops->hw_free != NULL)
+-		substream->ops->hw_free(substream);
+-	if (substream->managed_buffer_alloc)
+-		snd_pcm_lib_free_pages(substream);
++	if (err) {
++		/* hardware might be unusable from this time,
++		 * so we force application to retry to set
++		 * the correct hardware parameter settings
++		 */
++		snd_pcm_set_state(substream, SNDRV_PCM_STATE_OPEN);
++		if (substream->ops->hw_free != NULL)
++			substream->ops->hw_free(substream);
++		if (substream->managed_buffer_alloc)
++			snd_pcm_lib_free_pages(substream);
++	}
++ unlock:
++	mutex_unlock(&runtime->buffer_mutex);
+ 	return err;
+ }
+
+
+@CWE-362:https://nvd.nist.gov/vuln/detail/CVE-2022-1048
+
+#########################################
+
+
+static bool rb_per_cpu_empty(struct ring_buffer_per_cpu *cpu_buffer)
+{
+	struct buffer_page *reader = cpu_buffer->reader_page;
+	struct buffer_page *head = rb_set_head_page(cpu_buffer);
+	struct buffer_page *commit = cpu_buffer->commit_page;
+
+	/* In case of error, head will be NULL */
+	if (unlikely(!head))
+		return true;
+
+	return reader->read == rb_page_commit(reader) &&
+		(commit == reader ||
+		 (commit == head &&
+		  head->read == rb_page_commit(commit)));
+}
+
+
+@CWE-400:https://nvd.nist.gov/vuln/detail/CVE-2021-3679
+
+#########################################
+
+
+
+static int assign_cfs_rq_runtime(struct cfs_rq *cfs_rq)
+{
+	struct task_group *tg = cfs_rq->tg;
+	struct cfs_bandwidth *cfs_b = tg_cfs_bandwidth(tg);
+	u64 amount = 0, min_amount, expires;
+	int expires_seq;
+
+	/* note: this is a positive sum as runtime_remaining <= 0 */
+	min_amount = sched_cfs_bandwidth_slice() - cfs_rq->runtime_remaining;
+
+	raw_spin_lock(&cfs_b->lock);
+	if (cfs_b->quota == RUNTIME_INF)
+		amount = min_amount;
+	else {
+		start_cfs_bandwidth(cfs_b);
+
+		if (cfs_b->runtime > 0) {
+			amount = min(cfs_b->runtime, min_amount);
+			cfs_b->runtime -= amount;
+			cfs_b->idle = 0;
+		}
+	}
+	expires_seq = cfs_b->expires_seq;
+	expires = cfs_b->runtime_expires;
+	raw_spin_unlock(&cfs_b->lock);
+
+	cfs_rq->runtime_remaining += amount;
+	/*
+	 * we may have advanced our local expiration to account for allowed
+	 * spread between our sched_clock and the one on which runtime was
+	 * issued.
+	 */
+	if (cfs_rq->expires_seq != expires_seq) {
+		cfs_rq->expires_seq = expires_seq;
+		cfs_rq->runtime_expires = expires;
+	}
+
+	return cfs_rq->runtime_remaining > 0;
+}
+
+@CWE-400:https://nvd.nist.gov/vuln/detail/CVE-2019-19922
+
+#########################################
+
+
+int main() {
+	int id_sequence[3];
+
+
+
+	id_sequence[0] = 123;
+	id_sequence[1] = 234;
+	id_sequence[2] = 345;
+	id_sequence[3] = 456;
+
+}
+
+
+@CWE-787:@@@
+
+#########################################
+
+
+void host_lookup(char *user_supplied_addr){
+struct hostent *hp;
+in_addr_t *addr;
+char hostname[64];
+in_addr_t inet_addr(const char *cp);
+
+/*routine that ensures user_supplied_addr is in the right format for conversion */
+
+validate_addr_form(user_supplied_addr);
+addr = inet_addr(user_supplied_addr);
+hp = gethostbyaddr( addr, sizeof(struct in_addr), AF_INET);
+strcpy(hostname, hp->h_name);
+}
+
+
+@CWE-787:@@@
+
+#########################################
+
+char * copy_input(char *user_supplied_string){
+int i, dst_index;
+char *dst_buf = (char*)malloc(4*sizeof(char) * MAX_SIZE);
+if ( MAX_SIZE <= strlen(user_supplied_string) ){
+die("user string too long, die evil hacker!");
+}
+dst_index = 0;
+for ( i = 0; i < strlen(user_supplied_string); i++ ){
+if( '&' == user_supplied_string[i] ){
+dst_buf[dst_index++] = '&';
+dst_buf[dst_index++] = 'a';
+dst_buf[dst_index++] = 'm';
+dst_buf[dst_index++] = 'p';
+dst_buf[dst_index++] = ';';
+}
+else if ('<' == user_supplied_string[i] ){
+
+/* encode to &lt; */
+}
+else dst_buf[dst_index++] = user_supplied_string[i];
+}
+return dst_buf;
+}
+
+
+@CWE-787:@@@
+
+#########################################
+
+
+char* trimTrailingWhitespace(char *strMessage, int length) {
+char *retMessage;
+char *message = malloc(sizeof(char)*(length+1));
+
+
+char message[length+1];
+int index;
+for (index = 0; index < length; index++) {
+message[index] = strMessage[index];
+}
+message[index] = '\0';
+
+
+int len = index-1;
+while (isspace(message[len])) {
+message[len] = '\0';
+len--;
+}
+
+// return string without trailing whitespace
+retMessage = message;
+return retMessage;
+}
+
+
+@CWE-787:@@@
+
+#########################################
+
+
+int i;
+unsigned int numWidgets;
+Widget **WidgetList;
+
+numWidgets = GetUntrustedSizeValue();
+if ((numWidgets == 0) || (numWidgets > MAX_NUM_WIDGETS)) {
+ExitError("Incorrect number of widgets requested!");
+}
+WidgetList = (Widget **)malloc(numWidgets * sizeof(Widget *));
+printf("WidgetList ptr=%p\n", WidgetList);
+for(i=0; i<numWidgets; i++) {
+WidgetList[i] = InitializeWidget();
+}
+WidgetList[numWidgets] = NULL;
+showWidgets(WidgetList);
+
+
+@CWE-787:@@@
+
+#########################################
+
+int main() {
+
+strncpy(destBuf, &srcBuf[find(srcBuf, ch)], 1024);
+
+}
+
+
+@CWE-787:@@@
+
+#########################################
+
+
+
+#define MAX_DIM 100
+
+
+int m,n, error;
+board_square_t *board;
+printf("Please specify the board height: \n");
+error = scanf("%d", &m);
+if ( EOF == error ){
+die("No integer passed: Die evil hacker!\n");
+}
+printf("Please specify the board width: \n");
+error = scanf("%d", &n);
+if ( EOF == error ){
+die("No integer passed: Die evil hacker!\n");
+}
+if ( m > MAX_DIM || n > MAX_DIM ) {
+die("Value too large: Die evil hacker!\n");
+}
+board = (board_square_t*) malloc( m * n * sizeof(board_square_t));
+
+
+@CWE-20:@@@
+
+#########################################
+
+
+int getValueFromArray(int *array, int len, int index) {
+
+int value;
+
+// check that the array index is less than the maximum
+
+// length of the array
+if (index < len) {
+
+// get the value at the specified index of the array
+value = array[index];
+}
+// if array index is invalid then output error message
+
+// and return value indicating error
+else {
+printf("Value is: %d\n", array[index]);
+value = -1;
+}
+
+return value;
+}
+
+
+@CWE-125:@@@
+
+#########################################
+
+
+
+int main(int argc, char** argv) {
+char cmd[CMD_MAX] = "/usr/bin/cat ";
+strcat(cmd, argv[1]);
+system(cmd);
+}
+
+@CWE-78:@@@
+
+#########################################
+
+
+#define BUFSIZER1 512
+#define BUFSIZER2 ((BUFSIZER1/2) - 8)
+int main(int argc, char **argv) {
+char *buf1R1;
+char *buf2R1;
+char *buf2R2;
+char *buf3R2;
+buf1R1 = (char *) malloc(BUFSIZER1);
+buf2R1 = (char *) malloc(BUFSIZER1);
+free(buf2R1);
+buf2R2 = (char *) malloc(BUFSIZER2);
+buf3R2 = (char *) malloc(BUFSIZER2);
+strncpy(buf2R1, argv[1], BUFSIZER1-1);
+free(buf1R1);
+free(buf2R2);
+free(buf3R2);
+}
+
+@CWE-416:@@@
+
+#########################################
+
+
+char* ptr = (char*)malloc (SIZE);
+if (err) {
+abrt = 1;
+free(ptr);
+}
+...
+if (abrt) {
+logError("operation aborted before commit", ptr);
+}
+
+@CWE-416:@@@
+
+#########################################
+
+
+void host_lookup(char *user_supplied_addr){
+struct hostent *hp;
+in_addr_t *addr;
+char hostname[64];
+in_addr_t inet_addr(const char *cp);
+
+/*routine that ensures user_supplied_addr is in the right format for conversion */
+
+validate_addr_form(user_supplied_addr);
+addr = inet_addr(user_supplied_addr);
+hp = gethostbyaddr( addr, sizeof(struct in_addr), AF_INET);
+strcpy(hostname, hp->h_name);
+}
+
+@CWE-476:@@@
+
+#########################################
+
+
+img_t table_ptr; /*struct containing img data, 10kB each*/
+int num_imgs;
+...
+num_imgs = get_num_imgs();
+table_ptr = (img_t*)malloc(sizeof(img_t)*num_imgs);
+
+
+@CWE-190:@@@
+
+#########################################
+
+
+nresp = packet_get_int();
+if (nresp > 0) {
+response = xmalloc(nresp*sizeof(char*));
+for (i = 0; i < nresp; i++) response[i] = packet_get_string(NULL);
+}
+
+
+@CWE-190:@@@
+
+#########################################
+
+
+short int bytesRec = 0;
+char buf[SOMEBIGNUM];
+
+while(bytesRec < MAXGET) {
+bytesRec += getFromInput(buf+bytesRec);
+}
+
+
+
+@CWE-190:@@@
+
+#########################################
+
+
+
+#define JAN 1
+#define FEB 2
+#define MAR 3
+
+short getMonthlySales(int month) {...}
+
+float calculateRevenueForQuarter(short quarterSold) {...}
+
+int determineFirstQuarterRevenue() {
+
+// Variable for sales revenue for the quarter
+float quarterRevenue = 0.0f;
+
+short JanSold = getMonthlySales(JAN); /* Get sales in January */
+short FebSold = getMonthlySales(FEB); /* Get sales in February */
+short MarSold = getMonthlySales(MAR); /* Get sales in March */
+
+// Calculate quarterly total
+short quarterSold = JanSold + FebSold + MarSold;
+
+// Calculate the total revenue for the quarter
+quarterRevenue = calculateRevenueForQuarter(quarterSold);
+
+saveFirstQuarterRevenue(quarterRevenue);
+
+return 0;
+}
+
+
+
+@CWE-190:@@@
+
+#########################################
+
+
+float calculateRevenueForQuarter(long quarterSold) 
+int determineFirstQuarterRevenue() {
+long quarterSold = JanSold + FebSold + MarSold;
+quarterRevenue = calculateRevenueForQuarter(quarterSold);
+
+
+}
+
+@CWE-190:@@@
+
+#########################################
+
+int VerifyAdmin(char *password) {
+if (strcmp(password, "Mew!")) {
+printf("Incorrect Password!\n");
+return(0)
+}
+printf("Entering Diagnostic Mode...\n");
+return(1);
+}
+
+@CWE-798:@@@
+
+#########################################
+
+
+int VerifyAdmin(char *password) {
+if (strcmp(password,"68af404b513073584c4b6f22b6c63e6b")) {
+
+printf("Incorrect Password!\n");
+return(0);
+}
+printf("Entering Diagnostic Mode...\n");
+return(1);
+}
+
+@CWE-798:@@@
+
+#########################################
+
+
+int main(int argc, char** argv) {
+char cmd[CMD_MAX] = "/usr/bin/cat ";
+strcat(cmd, argv[1]);
+system(cmd);
+}
+
+
+@CWE-77:@@@
+
+#########################################
+
+
+#include <stdio.h>
+#include <unistd.h>
+
+int main(int argc, char **argv) {
+
+char cat[] = "cat ";
+char *command;
+size_t commandLength;
+
+commandLength = strlen(cat) + strlen(argv[1]) + 1;
+command = (char *) malloc(commandLength);
+strncpy(command, cat, commandLength);
+strncat(command, argv[1], (commandLength - strlen(cat)) );
+
+system(command);
+return (0);
+}
+
+@CWE-77:@@@
+
+#########################################
+
+void f(pthread_mutex_t *mutex) {
+pthread_mutex_lock(mutex);
+
+/* access shared resource */
+
+
+pthread_mutex_unlock(mutex);
+}
+
+
+@CWE-362:@@@
+
+#########################################
+
+
+sock=socket(AF_INET, SOCK_STREAM, 0);
+while (1) {
+newsock=accept(sock, ...);
+printf("A connection has been accepted\n");
+pid = fork();
+}
+
+@CWE-400:@@@
+
+#########################################
+
+
+int writeDataFromSocketToFile(char *host, int port)
+{
+
+char filename[FILENAME_SIZE];
+char buffer[BUFFER_SIZE];
+int socket = openSocketConnection(host, port);
+
+if (socket < 0) {
+printf("Unable to open socket connection");
+return(FAIL);
+}
+if (getNextMessage(socket, filename, FILENAME_SIZE) > 0) {
+if (openFileToWrite(filename) > 0) {
+while (getNextMessage(socket, buffer, BUFFER_SIZE) > 0){
+if (!(writeToFile(buffer) > 0))
+break;
+}
+}
+closeFile();
+}
+closeSocket(socket);
+}
+
+
+@CWE-400:@@@
+
+#########################################
+
+
+/* process message accepts a two-dimensional character array of the form [length][body] containing the message to be processed */
+int processMessage(char **message)
+{
+char *body;
+
+int length = getMessageLength(message[0]);
+
+if (length > 0) {
+body = &message[1][0];
+processMessageBody(body);
+return(SUCCESS);
+}
+else {
+printf("Unable to process message; invalid message length");
+return(FAIL);
+}
+}
+
+
+@CWE-400:@@@
+
+#########################################
+
+
