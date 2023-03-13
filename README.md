@@ -60,7 +60,7 @@ Here we explain some of the important parameters we used for our application.
 ### Datasets
 - Please download our [VulF](https://utsacloud-my.sharepoint.com/:f:/g/personal/peyman_najafirad_utsa_edu/Eo0SVOO07dlGhlOLBYz2zzcBcVzD5DMkCjlzuvs6ABPmBQ?e=DmY2hY) dataset VulF directory.
 
-- Our N-Day and 0-Day samples are also available in the previous link under *Testing* directory.
+- Our N-day and zero-day samples are also available in the previous link under *Testing* directory.
 - After downloading VulF dataset, please put it under the directory *data*.
 
 
