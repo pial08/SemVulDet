@@ -20,7 +20,7 @@ Graph construction            |  Graph neural networks with residual connection
 - sctokenizer 0.0.8
 
 
-## Usage
+### Usage
 The repository is partially based on [CodeXGLUE](https://github.com/microsoft/CodeXGLUE/tree/main/Code-Code/Defect-detection).
 
 
