@@ -2,13 +2,22 @@
 
 # An Unbiased Transformer Source Code Learning with Semantic Vulnerability Graph
 
-This code provides the implementation of RoBERTa-PFGCN as described in out paper, a method to generate Graph of 
+This code provides the implementation of *RoBERTa-PFGCN* as described in out paper, a method to generate Graph of 
 Program dubbed SVG with our novel Poacher Flow Edges. We use RoBERTa to generate embeddings and GCN for vulnerability detection and classification.
 
 
 Graph construction            |  Graph neural networks with residual connection
 :-------------------------:|:-------------------------:
-![](https://github.com/pial08/SemVulDet/blob/main/graph.png)  |  ![](https://github.com/pial08/SemVulDet/blob/main/arch.png)
+![](https://github.com/pial08/SemVulDet/blob/main/figures/graph.png)  |  ![](https://github.com/pial08/SemVulDet/blob/main/figures/arch.png)
+
+
+#### Requirements
+- Python 	3.7
+- Pytorch 	1.9 
+- Transformer 	4.4
+- torchmetrics 0.11.4
+- tree-sitter 0.20.1
+- sctokenizer 0.0.8
 
 
 ## Usage
@@ -41,14 +50,11 @@ Here we explain some of the important parameters we used for our application.
 
 
 ### Datasets
-Please download our datasets from the following directory:(Need Google Drive Link for Annonymity) [Data](https://utsacloud-my.sharepoint.com/:f:/g/personal/peyman_najafirad_utsa_edu/Eo0SVOO07dlGhlOLBYz2zzcBcVzD5DMkCjlzuvs6ABPmBQ?e=DmY2hY)
+- Please download our [VulF](https://utsacloud-my.sharepoint.com/:f:/g/personal/peyman_najafirad_utsa_edu/Eo0SVOO07dlGhlOLBYz2zzcBcVzD5DMkCjlzuvs6ABPmBQ?e=DmY2hY) dataset VulF directory.
 
-#### Requirements
-- Python 	3.7
-- Pytorch 	1.9 
-- Transformer 	4.4
-- torchmetrics 0.11.4
-- tree-sitter 0.20.1
+- Our N-Day and 0-Day samples are also available in the previous link under *Testing* directory.
+- After downloading VulF dataset, please put it under the directory *data*.
+
 
 
 
