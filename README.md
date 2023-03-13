@@ -16,20 +16,29 @@ The repository is partially based on [CodeXGLUE](https://github.com/microsoft/Co
 
 
 ### Training and Evaluation
-The following command should be used for training, testing and evaluation. Please set the ```--output_dir``` to the address where the model will be saved. Please put the location/address of train, evaluation and test file directory for the parameters
+The following command should be used for training, testing and evaluation. Please set the ```--output_dir``` to the address where the model will be saved. We have also compiled a shell file with the same command for ease of use for the practitioners. Please put the location/address of train, evaluation and test file directory for the parameters
 ```--train_data_file```, ```--eval_data_file``` and ```--test_data_file```. 
 
 ```shell
 cd code
-python run.py --output_dir=./saved_models/regcn_l2_hs128_uni_ws5_lr5e4 --model_type=roberta --tokenizer_name=microsoft/graphcodebert-base --model_name_or_path=microsoft/graphcodebert-base \
-	--do_eval --do_test --do_train --train_data_file=<train_directory> --eval_data_file=<eval_directory> --test_data_file=<test_directory> \
+python run.py --output_dir=<output_directory> --model_type=roberta --tokenizer_name=microsoft/graphcodebert-base --model_name_or_path=microsoft/graphcodebert-base \
+	--do_eval --do_test --do_train --train_data_file=<training_data_directory> --eval_data_file=<eval_data_directory> --test_data_file=<test_data_directory> \
 	--block_size 400 --train_batch_size 512 --eval_batch_size 512 --max_grad_norm 1.0 --evaluate_during_training \
 	--gnn ReGCN --learning_rate 5e-4 --epoch 100 --hidden_size 512 --num_classes 2 --num_GNN_layers 2 --format uni --window_size 5 \
 	--seed 123456 2>&1 | tee $logp/training_log.txt
 
 ```
 
-In order to clearly explain the implementation of our Poacher Flow (PF) Edges please see the following <directory>
+### Shell file parameters explaination
+Here we explain some of the important parameters we used for our application. 
+
+| Parameters | Default Values | Values | Description |
+| :---:    | :---:   |:---:                | :---: |
+| `--loss` | `focal` | *focal* or *weight* | Change parameters based on the usage of focal loss or weighted loss |
+| `--graph`| `SVG`   | *SVG* or *AST* | Change parameters based on the graph generation method |
+| `--alpha`| `0.1`   | 0-1 | The number should be a floating point |
+| `--gamma`| `2.0`   | 0-INF | Floating value ranging from 0 to infinity. If the value is 0, effect os gamma is ignored |
+
 
 ### Datasets
 Please download our datasets from the following directory:(Need Google Drive Link for Annonymity) [Data](https://utsacloud-my.sharepoint.com/:f:/g/personal/peyman_najafirad_utsa_edu/Eo0SVOO07dlGhlOLBYz2zzcBcVzD5DMkCjlzuvs6ABPmBQ?e=DmY2hY)
