@@ -41,7 +41,7 @@ or,
 python run.py --output_dir=<output_directory> --model_type=roberta --tokenizer_name=microsoft/graphcodebert-base --model_name_or_path=microsoft/graphcodebert-base \
 	--do_eval --do_test --do_train --train_data_file=<training_data_directory> --eval_data_file=<eval_data_directory> --test_data_file=<test_data_directory> \
 	--block_size 400 --train_batch_size 512 --eval_batch_size 512 --max_grad_norm 1.0 --evaluate_during_training \
-	--gnn ReGCN --learning_rate 5e-4 --epoch 100 --hidden_size 512 --num_classes 2 --num_GNN_layers 2 --format uni --window_size 5 \
+	--gnn ReGCN --learning_rate 5e-4 --epoch 100 --hidden_size 512 --num_classes 2 --model_checkpoint <saved_directory> --num_GNN_layers 2 --format uni --window_size 5 \
 	--seed 123456 2>&1 | tee $logp/training_log.txt
 
 ```
@@ -58,12 +58,13 @@ Here we explain some of the important parameters we used for our application.
 
 
 ### Datasets
-- Please download our [VulF](https://utsacloud-my.sharepoint.com/:f:/g/personal/peyman_najafirad_utsa_edu/Eo0SVOO07dlGhlOLBYz2zzcBcVzD5DMkCjlzuvs6ABPmBQ?e=DmY2hY) dataset VulF directory.
+- Please download our [VulF](https://drive.google.com/drive/folders/1d00kfEX6k1MhpxJtuFv5JqtlQTJfg03N?usp=sharing) dataset VulF directory.
 
 - Our N-day and zero-day samples are also available in the previous link under *Testing* directory.
 - After downloading VulF dataset, please put it under the directory *data*.
 
-
+### Reproducibility
+In order to use our pre-trained model, please download our model from [here](https://drive.google.com/drive/folders/1d00kfEX6k1MhpxJtuFv5JqtlQTJfg03N?usp=sharing) under the Saved Model directory. After downloading, please set the value of the parameter `--model_checkpoint` to local directory you saved the pre-trained model.
 
 
 
