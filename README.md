@@ -19,6 +19,19 @@ Graph construction            |  Graph neural networks with residual connection
 - tree-sitter 0.20.1
 - sctokenizer 0.0.8
 
+Moreover the above libraries can be installed by the commands from *requirements.txt* file. It is assumed that the installation will be done in a Linux system with a GPU. If GPU does not exist please remove the first command from the *requirements.txt*  file and replace it with 
+
+`conda install pytorch==1.9.1 torchvision==0.10.1 torchaudio==0.9.1 -c pytorch` for OSX
+or 
+`conda install pytorch==1.9.0 torchvision==0.10.1 torchaudio==0.9.1 cpuonly -c pytorch` for Linux and Windows with no GPU.
+
+Instructions to install libraries using *requirements.txt* file.
+
+```shell
+cd code 
+pip install -r requirements.txt
+```
+
 
 ### Usage
 The repository is partially based on [CodeXGLUE](https://github.com/microsoft/CodeXGLUE/tree/main/Code-Code/Defect-detection).
