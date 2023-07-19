@@ -113,20 +113,3 @@ Please cite the paper whenever our ReGVD is used to produce published results or
 ## License
 As a free open-source implementation, our repository is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. All other warranties including, but not limited to, merchantability and fitness for purpose, whether express, implied, or arising by operation of law, course of dealing, or trade usage are hereby disclaimed. I believe that the programs compute what I claim they compute, but I do not guarantee this. The programs may be poorly and inconsistently documented and may contain undocumented components, features or modifications. I make no guarantee that these programs will be suitable for any application.
 
-
-
-@INPROCEEDINGS {,
-author = {N. Islam and G. Parra and D. Manuel and E. Bou-Harb and P. Najafirad},
-booktitle = {2023 IEEE 8th European Symposium on Security and Privacy (EuroS&P)},
-title = {An Unbiased Transformer Source Code Learning with Semantic Vulnerability Graph},
-year = {2023},
-volume = {},
-issn = {},
-pages = {144-159},
-keywords = {},
-doi = {10.1109/EuroSP57164.2023.00018},
-url = {https://doi.ieeecomputersociety.org/10.1109/EuroSP57164.2023.00018},
-publisher = {IEEE Computer Society},
-address = {Los Alamitos, CA, USA},
-month = {jul}
-}
