@@ -94,9 +94,18 @@ Please cite the paper whenever our ReGVD is used to produce published results or
 
     @inproceedings{islam2023unbiased,
         author = {N. Islam and G. Parra and D. Manuel and E. Bou-Harb and P. Najafirad},
-        booktitle = {2023 IEEE 8th European Symposium on Security and Privacy (EuroS&amp;P)},
+        booktitle = {2023 IEEE 8th European Symposium on Security and Privacy (EuroS&P)},
 		title = {An Unbiased Transformer Source Code Learning with Semantic Vulnerability Graph},	
-        year={2022}
+        year = {2023},
+		volume = {},
+		issn = {},
+		pages = {144-159},
+		keywords = {},
+		doi = {10.1109/EuroSP57164.2023.00018},
+		url = {https://doi.ieeecomputersociety.org/10.1109/EuroSP57164.2023.00018},
+		publisher = {IEEE Computer Society},
+		address = {Los Alamitos, CA, USA},
+		month = {jul}
     }
 
 		
@@ -108,7 +117,7 @@ As a free open-source implementation, our repository is distributed on an "AS IS
 
 @INPROCEEDINGS {,
 author = {N. Islam and G. Parra and D. Manuel and E. Bou-Harb and P. Najafirad},
-booktitle = {2023 IEEE 8th European Symposium on Security and Privacy (EuroS&amp;P)},
+booktitle = {2023 IEEE 8th European Symposium on Security and Privacy (EuroS&P)},
 title = {An Unbiased Transformer Source Code Learning with Semantic Vulnerability Graph},
 year = {2023},
 volume = {},
