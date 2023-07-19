@@ -85,20 +85,11 @@ In order to use our pre-trained model, please download our model from [here](htt
 ## Cite  
 Please cite the paper whenever our ReGVD is used to produce published results or incorporated into other software:
 
- 
 
-## Cite  
-Please cite the paper whenever our ReGVD is used to produce published results or incorporated into other software:
-
-
-
-
-
- 
 
 @inproceedings{islam2023unbiased,
 		author = {N. Islam and G. Parra and D. Manuel and E. Bou-Harb and P. Najafirad},
-		booktitle = {2023 IEEE 8th European Symposium on Security and Privacy (EuroS&amp;P)},
+		booktitle = {2023 IEEE 8th European Symposium on Security and Privacy (EuroS&P)},
 		title = {An Unbiased Transformer Source Code Learning with Semantic Vulnerability Graph},
 		year = {2023},
 		volume = {},
