@@ -87,8 +87,7 @@ Please cite the paper whenever our ReGVD is used to produce published results or
 
  
 
-@INPROCEEDINGS {,
-author = {N. Islam and G. Parra and D. Manuel and E. Bou-Harb and P. Najafirad},
+@inproceedings {author = {N. Islam and G. Parra and D. Manuel and E. Bou-Harb and P. Najafirad},
 booktitle = {2023 IEEE 8th European Symposium on Security and Privacy (EuroS&amp;P)},
 title = {An Unbiased Transformer Source Code Learning with Semantic Vulnerability Graph},
 year = {2023},
