@@ -88,7 +88,7 @@ Please cite the paper whenever our ReGVD is used to produce published results or
  
 
 ## Cite  
-Please cite the paper whenever our ReGVD is used to produce published results or incorporated into other software:
+Please cite the paper whenever our work is used to produce published results or incorporated into other software:
 
  
 
